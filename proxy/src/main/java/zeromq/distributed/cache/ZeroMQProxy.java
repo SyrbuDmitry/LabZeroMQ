@@ -3,7 +3,13 @@ package zeromq.distributed.cache;
 import org.zeromq.SocketType;
 import org.zeromq.ZMQ;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ZeroMQProxy {
+
+    private List<String> serverList = new ArrayList<>();
+
     public static void main(String[] args) {
         ZMQ.Context context = ZMQ.context(1);
         ZMQ.Socket frontend = context.socket(SocketType.ROUTER);
