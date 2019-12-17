@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ZeroMQProxy {
 
-    private List<String> serverList = new ArrayList<>();
+    private static List<String> serverList = new ArrayList<>();
 
     public static void main(String[] args) {
         ZMQ.Context context = ZMQ.context(1);
@@ -41,7 +41,8 @@ public class ZeroMQProxy {
                 while (true) {
                     message = backend.recv(0);
                     more = backend.hasReceiveMore();
-                    if()
+                    if(new String(message).equals("NOTIFY"))
+                        serverList.add();
                     frontend.send(message, more ? ZMQ.SNDMORE : 0);
                     if (!more) {
                         break;
