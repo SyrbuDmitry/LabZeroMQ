@@ -21,7 +21,7 @@ public class CacheStorageApp {
             }
             // Send reply back to client
             if(req.equals("get"))
-                dealer.send (cache.getValue(1));
+                dealer.send (cache.getValue(1).getBytes(ZMQ.CHARSET),0);
             if(req.equals("put"))
                 cache.putValue(4,"D");
         }
