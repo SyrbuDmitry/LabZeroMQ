@@ -9,6 +9,7 @@ public class CacheStorageApp {
 // Socket to talk to server
         ZMQ.Socket dealer = context.socket (SocketType.DEALER);
         dealer.bind("tcp://*:5560");
+        System.out.println("bind to localhost:5560");
         Storage cache = new Storage();
         while (!Thread.currentThread ().isInterrupted ()) {
 // Wait for next request from client
