@@ -43,7 +43,7 @@ public class ZeroMQProxy {
                     String strMsg = new String(message);
                     String [] msg = parseString(strMsg);
                     if(msg[0].equals("NOTIFY")) {
-                        CacheSegment insert = new CacheSegment(Integer.parseInt(msg[1]), Integer.parseInt(msg[2]);
+                        CacheSegment insert = new CacheSegment(Integer.parseInt(msg[1]), Integer.parseInt(msg[2]));
                         if(!serverList.contains(insert))
                             serverList.add(new CacheSegment(Integer.parseInt(msg[1]), Integer.parseInt(msg[2])));
                     }
