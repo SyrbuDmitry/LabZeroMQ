@@ -61,6 +61,6 @@ public class ZeroMQProxy {
         return str.split(" ");
     }
     private static void checkList(){
-        
+
     }
 }
