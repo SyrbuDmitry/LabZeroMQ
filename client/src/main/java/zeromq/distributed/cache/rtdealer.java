@@ -31,6 +31,7 @@ public class rtdealer
             requester.recvStr(0);
             requester.send("GET 0", 0);
             String message = requester.recvStr(0);
+            System.out.println("RESPONSE");
             System.out.println(message);
 // We never get here but clean up anyhow requester.close();
         context.term();
