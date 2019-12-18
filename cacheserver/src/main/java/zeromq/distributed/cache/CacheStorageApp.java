@@ -28,6 +28,7 @@ public class CacheStorageApp {
             }
            if(reqPar[0].equals("PUT")){
                 cache.putValue(Integer.parseInt(reqPar[1]),reqPar[2]);
+                dealer.send("");
             }
         }
         context.term();
