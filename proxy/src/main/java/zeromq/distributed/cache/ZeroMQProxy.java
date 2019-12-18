@@ -39,7 +39,7 @@ public class ZeroMQProxy {
                     System.out.println(new String(message));
                     backend.sendMore(id);
                     backend.sendMore(dil);
-                     backend.send(message,0);
+                    backend.send(message,0);
 
 //                    if (!more) {
 //                        break;
