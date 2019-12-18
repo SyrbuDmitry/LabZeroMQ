@@ -28,6 +28,7 @@ public class rtdealer
         requester.sendMore("");
         requester.recvStr();
         requester.send("PUT 0 A");
+        requester.recvStr();
 
 //            requester.send("PUT 1 B", 0);
 //
