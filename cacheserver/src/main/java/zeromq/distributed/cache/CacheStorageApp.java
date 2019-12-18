@@ -10,19 +10,15 @@ public class CacheStorageApp {
         ZMQ.Socket responder = context.socket(SocketType.DEALER);
         responder.connect("tcp://localhost:5566");
         while (!Thread.currentThread().isInterrupted()) {
-            System.out.println("Received request"); // Do some 'work'
-
-// Wait for next request from client
-            //String string = responder.recvStr(0);
-            //System.out.println(string);
+            String string = responder.recvStr (0);
+            System.out.printf ("Received request: [%s]\n", string); // Do some 'work'
             try {
-                Thread.sleep(1000);
+                Thread.sleep (1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 // Send reply back to client
-            responder.sendMore("");
-            responder.send("World");
+            responder.send ("World");
         }
 // We never get here but clean up anyhow
         responder.close();
