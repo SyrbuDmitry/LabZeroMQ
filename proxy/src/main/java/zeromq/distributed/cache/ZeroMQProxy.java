@@ -45,7 +45,7 @@ public class ZeroMQProxy {
                         CacheSegment insert = new CacheSegment(Integer.parseInt(msgParams[1]), Integer.parseInt(msgParams[2]), id);
                         serverList.add(insert);
                     }else {
-                        
+
                         frontend.send(msg);
                     }
             }
