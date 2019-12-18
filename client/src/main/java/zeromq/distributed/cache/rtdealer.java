@@ -33,7 +33,8 @@ public class rtdealer
 //            String message = requester.recvStr(0);
 //            System.out.println("RESPONSE");
 //            System.out.println(message);
-// We never get here but clean up anyhow requester.close();
+// We never get here but clean up anyhow
+        requester.close();
         context.term();
     }
 }
