@@ -13,6 +13,7 @@ public class CacheStorageApp {
         dealer.sendMore("");
         dealer.send("NOTIFY 0 5");
         Storage cache = new Storage();
+        System.out.println("START LISTENING TO POLLS");
         while (!Thread.currentThread ().isInterrupted ()) {
             String req = dealer.recvStr (0);
             System.out.printf ("Received request: [%s]\n", req); // Do some 'work'
