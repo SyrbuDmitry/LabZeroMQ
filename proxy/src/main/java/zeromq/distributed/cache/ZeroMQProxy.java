@@ -22,11 +22,11 @@ public class ZeroMQProxy {
         items.register(frontend, ZMQ.Poller.POLLIN);
         items.register(backend, ZMQ.Poller.POLLIN);
         boolean more = false;
-        String message,identity;
+        String message, identity;
 
 // Switch messages between sockets
         while (!Thread.currentThread().isInterrupted()) {
-                items.poll();
+            items.poll();
 // poll and memorize multipart detection items.poll();
             if (items.pollin(0)) {
                 while (true) {
@@ -41,19 +41,14 @@ public class ZeroMQProxy {
                 }
             }
             if (items.pollin(1)) {
-                System.out.println("RESPONSE");
-                identity = backend.recvStr(0);
-                backend.recvStr(0);
-                message = backend.recvStr(0);
-                String [] sarr = message.split(" " );
-                if(sarr[0].equals("NOTIFY")) {
-                    serverList.add(new CacheSegment(sarr[1], sarr[2], identity));
-                    //System.out.println(serverList.get(serverList.size()-1).getCount());
-                }
-                else {
-                    frontend.sendMore(identity);
-                    frontend.sendMore("");
-                    frontend.send(message);
+                while (true) {
+                    message = frontend.recvStr(0);
+                    System.out.println(message);
+                    more = frontend.hasReceiveMore();
+                    backend.send(message, more ? ZMQ.SNDMORE : 0);
+                    if (!more) {
+                        break;
+                    }
                 }
             }
         }
