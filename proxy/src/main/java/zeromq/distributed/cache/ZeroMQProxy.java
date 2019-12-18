@@ -14,8 +14,8 @@ public class ZeroMQProxy {
         ZMQ.Context context = ZMQ.context(1);
         ZMQ.Socket frontend = context.socket(SocketType.ROUTER);
         ZMQ.Socket backend = context.socket(SocketType.DEALER);
-        frontend.bind("tcp://*:5559");
-        backend.bind("tcp://*:5560");
+        frontend.bind("tcp://*:5551");
+        backend.bind("tcp://*:5550");
         System.out.println("launch and connect broker.");
 // Initialize poll set
         ZMQ.Poller items = context.poller(2);
@@ -28,6 +28,7 @@ public class ZeroMQProxy {
         while (!Thread.currentThread().isInterrupted()) {
             items.poll();
             if (items.pollin(0)) {
+                System.out.println("REQ");
                 while (true) {
                     message = frontend.recvStr(0);
                     more = frontend.hasReceiveMore();
@@ -37,6 +38,7 @@ public class ZeroMQProxy {
                 }
             }
             if (items.pollin(1)) {
+                System.out.println("RESP");
                 while (true) {
                     message = backend.recvStr(0);
                     more = backend.hasReceiveMore();
