@@ -46,6 +46,8 @@ public class ZeroMQProxy {
 //                }
             }
             if (items.pollin(1)) {
+                System.out.println();
+                System.out.println("REP");
                 //while (true) {
                 id = backend.recv(0);
                 dil = backend.recv(0);
