@@ -13,12 +13,12 @@ public class CacheStorageApp {
         responder.send("N");
         System.out.println("CONNECTED");
         while (!Thread.currentThread().isInterrupted()) {
-            System.out.println(responder.recvStr());
-            System.out.println(responder.recvStr());
+//            System.out.println(responder.recvStr());
+//            System.out.println(responder.recvStr());
 
-//            responder.recvStr();
-//            String string = responder.recvStr();
-//            System.out.printf ("Received request: [%s]\n", string); // Do some 'work'
+            responder.recvStr();
+            String string = responder.recvStr();
+            System.out.printf ("Received request: [%s]\n", string); // Do some 'work'
             try {
                 Thread.sleep (1000);
             } catch (InterruptedException e) {
