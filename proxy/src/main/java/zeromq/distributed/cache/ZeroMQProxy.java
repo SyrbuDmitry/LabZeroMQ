@@ -41,7 +41,6 @@ public class ZeroMQProxy {
                 System.out.println("RESP");
                 while (true) {
                     message = backend.recvStr(0);
-                    System.out.println(message);
                     more = backend.hasReceiveMore();
                     frontend.send(message, more ? ZMQ.SNDMORE : 0);
                     if (!more) {
