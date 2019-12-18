@@ -61,6 +61,7 @@ public class ZeroMQProxy {
                 if(new String(message).equals("N"))
                     server = id;
                 else {
+                    System.out.println("SENDING REQUEST TO "+client);
                     frontend.sendMore(client);
                     frontend.sendMore("");
                     frontend.sendMore(message);
