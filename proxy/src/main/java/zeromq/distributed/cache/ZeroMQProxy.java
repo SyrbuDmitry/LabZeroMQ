@@ -35,9 +35,7 @@ public class ZeroMQProxy {
                 message = frontend.recvStr();
                 System.out.println(message);
 
-                backend.sendMore(identity);
-                backend.sendMore("");
-                backend.send(message);
+                backend.send(message,0);
 
             }
             if (items.pollin(1)) {
