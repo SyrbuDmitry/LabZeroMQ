@@ -22,11 +22,10 @@ public class rtdealer
     {
         ZMQ.Context context = ZMQ.context(1);
 // Socket to talk to server
-        Socket requester = context.socket(SocketType.REQ);
-        requester.connect("tcp://localhost:5559");
+        Socket requester = context.socket(SocketType.REQ); requester.connect("tcp://localhost:5559");
         System.out.println("launch and connect client.");
 
-            requester.send("Hello");
+            requester.send("Hello", 0);
 
             System.out.println("Received reply ");
 
