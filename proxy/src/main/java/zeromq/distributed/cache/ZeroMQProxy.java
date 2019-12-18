@@ -28,7 +28,6 @@ public class ZeroMQProxy {
         while (!Thread.currentThread().isInterrupted()) {
             items.poll();
             if (items.pollin(0)) {
-                System.out.println("REQ");
                 while (true) {
                     message = frontend.recvStr(0);
                     more = frontend.hasReceiveMore();
@@ -38,7 +37,6 @@ public class ZeroMQProxy {
                 }
             }
             if (items.pollin(1)) {
-                System.out.println("RESP");
                 while (true) {
                     message = backend.recvStr(0);
                     more = backend.hasReceiveMore();
