@@ -13,7 +13,7 @@ public class ZeroMQProxy {
     public static void main(String[] args) {
         ZMQ.Context context = ZMQ.context(1);
         ZMQ.Socket frontend = context.socket(SocketType.ROUTER);
-        ZMQ.Socket backend = context.socket(SocketType.DEALER);
+        ZMQ.Socket backend = context.socket(SocketType.ROUTER);
         frontend.bind("tcp://*:5559");
         backend.bind("tcp://*:5560");
         System.out.println("launch and connect broker.");
