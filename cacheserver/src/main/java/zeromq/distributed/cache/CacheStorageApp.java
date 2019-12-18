@@ -14,21 +14,22 @@ public class CacheStorageApp {
         dealer.send("NOTIFY 0 5");
         Storage cache = new Storage();
         while (!Thread.currentThread ().isInterrupted ()) {
-// Wait for next request from client
-//            String req = dealer.recvStr (0);
-//            System.out.printf ("Received request: [%s]\n", req); // Do some 'work'
-//            try {
-//                Thread.sleep (1000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//            // Send reply back to client
-//            if(req.equals("get"))
-//                dealer.send (cache.getValue(1).getBytes(ZMQ.CHARSET),0);
-//            if(req.equals("put"))
-//                cache.putValue(4,"D");
+            String req = dealer.recvStr (0);
+            System.out.printf ("Received request: [%s]\n", req); // Do some 'work'
+            try {
+                Thread.sleep (1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            String [] reqPar = req.split(" ");
+            if(reqPar[0].equals("GET")){
+                dealer.sendMore("");
+                dealer.send(cache.getValue(Integer.parseInt(reqPar[1])));
+            }
+           if(reqPar[0].equals("PUT")){
+                cache.putValue(Integer.parseInt(reqPar[1]),reqPar[2]);
+            }
         }
-// We never get here but clean up anyhow responder.close();
         context.term();
     }
 }
