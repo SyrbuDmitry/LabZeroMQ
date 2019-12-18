@@ -27,8 +27,7 @@ public class CacheStorageApp {
                 dealer.send(cache.getValue(Integer.parseInt(reqPar[1])));
             }
            if(reqPar[0].equals("PUT")){
-                System.out.println("REQUEST FROM CLIENT");
-                System.out.println(req);
+                System.out.println("REQUEST PUT FROM CLIENT");
                 cache.putValue(Integer.parseInt(reqPar[1]),reqPar[2]);
                 dealer.send("");
             }
