@@ -15,7 +15,7 @@ public class CacheStorageApp {
         Storage cache = new Storage();
         System.out.println("START LISTENING TO POLLS");
         while (!Thread.currentThread().isInterrupted()) {
-            String req = dealer.recvStr();
+            String req = dealer.recvStr(0);
             System.out.printf("Received request: [%s]\n", req); // Do some 'work'
             try {
                 Thread.sleep(1000);
