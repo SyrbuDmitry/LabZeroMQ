@@ -30,13 +30,13 @@ public class ZeroMQProxy {
             items.poll();
             if (items.pollin(0)) {
 //                while (true) {
-                    frontend.recv(0);
-                    frontend.recv(0);
-                    message = frontend.recv(0);
-                    System.out.println(new String(message));
-                    backend.sendMore(id);
-                    backend.sendMore("");
-                    backend.send(message);
+
+//                    frontend.recv(0);
+//                    message = frontend.recv(0);
+//                    System.out.println(new String(message));
+                    backend.sendMore(frontend.recv(0));
+                    backend.sendMore(frontend.recv(0));
+                     backend.sendMore(frontend.recv(0));
 
 //                    if (!more) {
 //                        break;
