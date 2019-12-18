@@ -8,9 +8,10 @@ import java.util.List;
 
 public class ZeroMQProxy {
 
-    private static List<CacheSegment> serverList = new ArrayList<>();
+
 
     public static void main(String[] args) {
+        List<CacheSegment> serverList = new ArrayList<>();
         ZMQ.Context context = ZMQ.context(1);
         ZMQ.Socket frontend = context.socket(SocketType.ROUTER);
         ZMQ.Socket backend = context.socket(SocketType.ROUTER);
@@ -38,19 +39,15 @@ public class ZeroMQProxy {
                 }
             }
             if (items.pollin(1)) {
-                    message = backend.recv(0);
-                    String strMsg = new String(message);
-                    String [] msg = parseString(strMsg);
-
-                    if(msg[0].equals("NOTIFY")) {
-                        CacheSegment insert = new CacheSegment(Integer.parseInt(msg[1]), Integer.parseInt(msg[2]));
-                        if(!serverList.contains(insert))
-                            serverList.add(new CacheSegment(Integer.parseInt(msg[1]), Integer.parseInt(msg[2])));
-                    }
-                    more = backend.hasReceiveMore();
-                    frontend.send(message, more ? ZMQ.SNDMORE : 0);
-                    if (!more) {
-                        break;
+                    String id = backend.recvStr();
+                    backend.recvStr();
+                    String msg = backend.recvStr();
+                    String [] msgParams = parseString(msg);
+                    if(msgParams[0].equals("NOTIFY")) {
+                        CacheSegment insert = new CacheSegment(Integer.parseInt(msgParams[1]), Integer.parseInt(msgParams[2]), id);
+                        serverList.add(insert);
+                    }else {
+                        frontend.send(msg);
                     }
             }
 
