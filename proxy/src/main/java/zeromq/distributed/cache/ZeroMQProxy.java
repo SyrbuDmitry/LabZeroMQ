@@ -37,9 +37,9 @@ public class ZeroMQProxy {
                     System.out.println(new String(id));
                     System.out.println(new String(dil));
                     System.out.println(new String(message));
-                    backend.sendMore(frontend.recv(0));
-                    backend.sendMore(frontend.recv(0));
-                     backend.sendMore(frontend.recv(0));
+                    backend.sendMore(id);
+                    backend.sendMore(dil);
+                     backend.send(message);
 
 //                    if (!more) {
 //                        break;
