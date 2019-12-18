@@ -3,9 +3,9 @@ package zeromq.distributed.cache;
 public class CacheSegment {
     private int start, end;
     private String id;
-    CacheSegment(int start, int end, String id){
-        this.start = start;
-        this.end = end;
+    CacheSegment(String start, String end, String id){
+        this.start = Integer.parseInt(start);
+        this.end = Integer.parseInt(end);
         this.id = id;
     }
 

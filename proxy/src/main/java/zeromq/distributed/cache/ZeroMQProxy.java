@@ -10,7 +10,7 @@ public class ZeroMQProxy {
 
 
     public static void main(String[] args) {
-
+        List<CacheSegment> serverList = new ArrayList<>();
         ZMQ.Context context = ZMQ.context(1);
         ZMQ.Socket frontend = context.socket(SocketType.ROUTER);
         ZMQ.Socket backend = context.socket(SocketType.ROUTER);
@@ -31,22 +31,25 @@ public class ZeroMQProxy {
                 identity = frontend.recvStr();
                 frontend.recvStr();
                 message = frontend.recvStr();
-                
-                more = frontend.hasReceiveMore();
-                backend.send(message, more ? ZMQ.SNDMORE : 0);
-                if(!more){
-                    break;
-                }
-
+                backend.sendMore(identity);
+                backend.sendMore("");
+                backend.sendMore(message);
             }
-            if (items.pollin(1)) { while (true) {
-                message = backend.recv(0);
-                more = backend.hasReceiveMore();
-                frontend.send(message, more ? ZMQ.SNDMORE : 0);
-                if(!more){
-                    break; }
-            } }
+            if (items.pollin(1)) {
+                identity = backend.recvStr();
+                backend.recvStr();
+                message = backend.recvStr();
+                String [] sarr = message.split(" " );
+                if(sarr[0].equals("NOTIFY")) {
+                    serverList.add(new CacheSegment(sarr[1], sarr[2], identity));
+                    System.out.println(serverList.size());
+                }
+                else {
+                    frontend.sendMore(identity);
+                    frontend.sendMore("");
+                    frontend.send(message);
+                }
+            }
         }
-
     }
 }
