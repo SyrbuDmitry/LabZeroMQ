@@ -30,7 +30,8 @@ public class rtdealer
             String reply = requester.recvStr (0);
             System.out.println("Received reply " + request_nbr + " [" + reply + "]");
         }
-// We never get here but clean up anyhow requester.close();
+// We never get here but clean up anyhow
+        requester.close();
         context.term();
     }
 }
