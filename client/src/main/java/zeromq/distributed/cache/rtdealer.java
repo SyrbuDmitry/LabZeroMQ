@@ -25,7 +25,7 @@ public class rtdealer
         Socket requester = context.socket(SocketType.REQ);
         requester.connect("tcp://localhost:5559");
         System.out.println("launch and connect client.");
-        requester.sendMore("");
+
         requester.send("PUT 0 A");
 
 
