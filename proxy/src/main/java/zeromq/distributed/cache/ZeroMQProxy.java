@@ -52,15 +52,13 @@ public class ZeroMQProxy {
                 id = backend.recv(0);
                 dil = backend.recv(0);
                 message = backend.recv(0);
+                System.out.println(new String(id));
+                System.out.println(new String(dil));
                 System.out.println(new String(message));
                 if(new String(message).equals("N"))
                     server = id;
-                else {
-                    System.out.println(new String(message));
-                }
 
-
-//                    more = backend.hasReceiveMore();
+//                   more = backend.hasReceiveMore();
                     //frontend.send(message, more ? ZMQ.SNDMORE : 0);
 //                    if (!more) {
 //                        break;

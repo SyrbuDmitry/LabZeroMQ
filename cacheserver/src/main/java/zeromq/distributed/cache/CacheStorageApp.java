@@ -25,6 +25,7 @@ public class CacheStorageApp {
                 e.printStackTrace();
             }
 // Send reply back to client
+            responder.sendMore ("");
             responder.send ("World");
         }
 // We never get here but clean up anyhow
