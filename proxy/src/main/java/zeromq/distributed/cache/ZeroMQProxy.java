@@ -29,7 +29,7 @@ public class ZeroMQProxy {
 // poll and memorize multipart detection
             items.poll();
             if (items.pollin(0)) {
-                System.out.println();
+
                 System.out.println("REQ");
 //                while (true) {
                     id = frontend.recv(0);
@@ -39,6 +39,7 @@ public class ZeroMQProxy {
                     System.out.println(new String(id));
                     System.out.println(new String(dil));
                     System.out.println(new String(message));
+                    System.out.println();
                     backend.sendMore(server);
                     backend.sendMore(dil);
                     backend.send(message,0);
@@ -58,7 +59,7 @@ public class ZeroMQProxy {
                 if(new String(message).equals("N"))
                     server = id;
                 else {
-                    System.out.println("SENDING" + new String(message) +" TO "+new String(client));
+                    System.out.println("SENDING " + new String(message) +" TO "+new String(client));
                     frontend.sendMore(client);
                     frontend.sendMore("");
                     frontend.sendMore(message);
