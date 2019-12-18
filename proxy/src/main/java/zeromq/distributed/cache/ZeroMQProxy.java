@@ -36,10 +36,9 @@ public class ZeroMQProxy {
                     dil = frontend.recv(0);
                     message = frontend.recv(0);
                     client = id;
-                System.out.println(new String(id));
-                System.out.println(new String(dil));
-                System.out.println(new String(message));
-                System.out.println();
+                    System.out.println(new String(id));
+                    System.out.println(new String(dil));
+                    System.out.println(new String(message));
                     backend.sendMore(server);
                     backend.sendMore(dil);
                     backend.send(message,0);
@@ -51,7 +50,7 @@ public class ZeroMQProxy {
             }
             if (items.pollin(1)) {
                 System.out.println();
-                System.out.println("RESP");
+                System.out.println("REP");
                 //while (true) {
                 id = backend.recv(0);
                 dil = backend.recv(0);
@@ -59,14 +58,11 @@ public class ZeroMQProxy {
                 System.out.println(new String(id));
                 System.out.println(new String(dil));
                 System.out.println(new String(message));
-                System.out.println();
                 if(new String(message).equals("N"))
                     server = id;
                 else {
-                    System.out.printf ("Received response: [%s]\n", new String(message));
                     frontend.sendMore(client);
-                    frontend.sendMore("");
-                    frontend.send(message);
+                    frontend.sendMore("")
                 }
 //                   more = backend.hasReceiveMore();
                     //frontend.send(message, more ? ZMQ.SNDMORE : 0);
