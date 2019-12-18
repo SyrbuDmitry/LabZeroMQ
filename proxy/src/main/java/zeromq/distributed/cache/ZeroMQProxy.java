@@ -27,24 +27,30 @@ public class ZeroMQProxy {
         while (!Thread.currentThread().isInterrupted()) {
 // poll and memorize multipart detection items.poll();
             if (items.pollin(0)) {
+                System.out.println("REQUEST");
                 while (true) {
                     message = frontend.recv(0);
+                    System.out.println(new String(message));
                     more = frontend.hasReceiveMore();
                     backend.send(message, more ? ZMQ.SNDMORE : 0);
                     if (!more) {
                         break;
                     }
                 }
+                System.out.println();
             }
             if (items.pollin(1)) {
+                System.out.println("RESPONSE");
                 while (true) {
                     message = backend.recv(0);
+                    System.out.println(new String(message));
                     more = backend.hasReceiveMore();
                     frontend.send(message, more ? ZMQ.SNDMORE : 0);
                     if (!more) {
                         break;
                     }
                 }
+                System.out.println();
             }
         }
     }
