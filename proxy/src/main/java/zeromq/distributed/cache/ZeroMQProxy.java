@@ -53,7 +53,7 @@ public class ZeroMQProxy {
                 if(new String(message).equals("N"))
                     server = id;
                 else {
-                    
+
                 }
 
 
