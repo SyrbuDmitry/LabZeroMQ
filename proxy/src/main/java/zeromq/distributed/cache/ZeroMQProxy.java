@@ -29,14 +29,12 @@ public class ZeroMQProxy {
 // poll and memorize multipart detection
             items.poll();
             if (items.pollin(0)) {
-                while (true) {
                     message = frontend.recv(0);
                     more = frontend.hasReceiveMore();
                     backend.send(message, more ? ZMQ.SNDMORE : 0);
                     if (!more) {
                         break;
                     }
-                }
             }
             if (items.pollin(1)) {
                     String id = backend.recvStr();
@@ -47,6 +45,7 @@ public class ZeroMQProxy {
                         CacheSegment insert = new CacheSegment(Integer.parseInt(msgParams[1]), Integer.parseInt(msgParams[2]), id);
                         serverList.add(insert);
                     }else {
+                        
                         frontend.send(msg);
                     }
             }
