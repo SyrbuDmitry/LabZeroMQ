@@ -30,7 +30,8 @@ public class ZeroMQProxy {
             if (items.pollin(0)) {
                 System.out.println("REQUEST");
                 while (true) {
-                message = frontend.recv(0);
+                    message = frontend.recv(0);
+                System.out.println(message.getBytes(ZMQ.CHARSET));
                 System.out.println(new String(message));
                 more = frontend.hasReceiveMore();
                 backend.send(message, more ? ZMQ.SNDMORE : 0);
