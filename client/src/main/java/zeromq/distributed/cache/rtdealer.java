@@ -26,7 +26,9 @@ public class rtdealer
         requester.connect("tcp://localhost:5559");
         System.out.println("launch and connect client.");
             requester.send("PUT 0 A", 0);
+            requester.recvStr(0);
             requester.send("PUT 1 B", 0);
+
             requester.send("GET 0", 0);
             String message = requester.recvStr(0);
             System.out.println("RESPONSE");
