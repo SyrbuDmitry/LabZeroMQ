@@ -50,6 +50,7 @@ public class ZeroMQProxy {
                 id = backend.recv(0);
                 dil = backend.recv(0);
                 message = backend.recv(0);
+                System.out.println(new String(message));
                 if(new String(message).equals("N"))
                     server = id;
                 else {

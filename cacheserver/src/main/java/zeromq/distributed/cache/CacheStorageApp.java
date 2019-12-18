@@ -15,10 +15,7 @@ public class CacheStorageApp {
         while (!Thread.currentThread().isInterrupted()) {
             System.out.println(responder.recvStr());
             System.out.println(responder.recvStr());
-            System.out.println(responder.recvStr());
-            System.out.println(responder.recvStr());
-            System.out.println(responder.recvStr());
-            System.out.println(responder.recvStr());
+
 //            responder.recvStr();
 //            String string = responder.recvStr();
 //            System.out.printf ("Received request: [%s]\n", string); // Do some 'work'
