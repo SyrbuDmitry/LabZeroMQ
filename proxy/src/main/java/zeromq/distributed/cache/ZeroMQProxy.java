@@ -25,7 +25,8 @@ public class ZeroMQProxy {
         byte[] message;
 // Switch messages between sockets
         while (!Thread.currentThread().isInterrupted()) {
-// poll and memorize multipart detection items.poll();
+// poll and memorize multipart detection
+            items.poll();
             if (items.pollin(0)) {
                 System.out.println("REQUEST");
                 while (true) {
