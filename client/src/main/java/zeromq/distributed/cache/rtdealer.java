@@ -22,19 +22,13 @@ public class rtdealer
     {
         ZMQ.Context context = ZMQ.context(1);
 // Socket to talk to server
-        Socket requester = context.socket(SocketType.REQ);
-        requester.connect("tcp://localhost:5559");
+        Socket requester = context.socket(SocketType.REQ); requester.connect("tcp://localhost:5559");
         System.out.println("launch and connect client.");
 
-        requester.send("PUT 0 A");
+            requester.send("Hello", 0);
+            String reply = requester.recvStr (0);
+            System.out.println("Received reply "  + " [" + reply + "]");
 
-
-//            requester.send("PUT 1 B", 0);
-//
-//            requester.send("GET 0", 0);
-//            String message = requester.recvStr(0);
-//            System.out.println("RESPONSE");
-//            System.out.println(message);
 // We never get here but clean up anyhow
         requester.close();
         context.term();
