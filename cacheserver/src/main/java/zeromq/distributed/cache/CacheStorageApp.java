@@ -4,26 +4,35 @@ import org.zeromq.SocketType;
 import org.zeromq.ZMQ;
 
 public class CacheStorageApp {
-    public static void main(String[] args) {
-        ZMQ.Context context = ZMQ.context(1);
+    public static void main(String[] args){
+        ZMQ.Context context = ZMQ.context (1);
 // Socket to talk to server
-        ZMQ.Socket responder = context.socket(SocketType.REP);
-        responder.connect("tcp://localhost:5560");
-        System.out.println("connected");
-        while (!Thread.currentThread().isInterrupted()) {
-// Wait for next request from client
-            String string = responder.recvStr(0);
-            System.out.printf("Received request: [%s]\n", string); // Do some 'work'
+        ZMQ.Socket dealer = context.socket (SocketType.DEALER);
+        dealer.connect("tcp://localhost:5560");
+        System.out.println("bind to localhost:5560");
+//        dealer.sendMore("");
+//        dealer.send("NOTIFY 0 5");
+        Storage cache = new Storage();
+        System.out.println("START LISTENING TO POLLS");
+        while (!Thread.currentThread().isInterrupted ()) {
+            String req = dealer.recvStr();
+            System.out.printf ("Received request: [%s]\n", req); // Do some 'work'
             try {
-                Thread.sleep(1000);
+                Thread.sleep (1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-// Send reply back to client
-            responder.send ("World");
+            String [] reqPar = req.split(" ");
+            if(reqPar[0].equals("GET")){
+                dealer.sendMore("");
+                dealer.send(cache.getValue(Integer.parseInt(reqPar[1])));
+            }
+           if(reqPar[0].equals("PUT")){
+                System.out.println("REQUEST PUT FROM CLIENT");
+                cache.putValue(Integer.parseInt(reqPar[1]),reqPar[2]);
+                dealer.send("");
+            }
         }
-// We never get here but clean up anyhow
-        responder.close();
         context.term();
     }
 }
