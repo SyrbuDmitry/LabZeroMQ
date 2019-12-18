@@ -2,9 +2,11 @@ package zeromq.distributed.cache;
 
 public class CacheSegment {
     private int start, end;
-    CacheSegment(int start, int end){
+    private String id;
+    CacheSegment(int start, int end, String id){
         this.start = start;
         this.end = end;
+        this.id = id;
     }
 
     public int getEnd() {
@@ -13,5 +15,9 @@ public class CacheSegment {
 
     public int getStart() {
         return start;
+    }
+
+    public String getId() {
+        return id;
     }
 }
