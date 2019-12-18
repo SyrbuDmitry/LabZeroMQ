@@ -23,7 +23,7 @@ public class ZeroMQProxy {
         items.register(frontend, ZMQ.Poller.POLLIN);
         items.register(backend, ZMQ.Poller.POLLIN);
         boolean more = false;
-        byte[] message,id=null;
+        byte[] message,id,dil;
 // Switch messages between sockets
         while (!Thread.currentThread().isInterrupted()) {
 // poll and memorize multipart detection
@@ -31,9 +31,12 @@ public class ZeroMQProxy {
             if (items.pollin(0)) {
 //                while (true) {
 
-//                    frontend.recv(0);
-//                    message = frontend.recv(0);
-//                    System.out.println(new String(message));
+                    id = frontend.recv(0);
+                    dil = frontend.recv(0);
+                    message = frontend.recv(0);
+                    System.out.println(new String(id));
+                    System.out.println(new String(dil));
+                    System.out.println(new String(message));
                     backend.sendMore(frontend.recv(0));
                     backend.sendMore(frontend.recv(0));
                      backend.sendMore(frontend.recv(0));
