@@ -269,12 +269,12 @@
       <workItem from="1576487068603" duration="58000" />
       <workItem from="1576612445761" duration="357000" />
       <workItem from="1576619142143" duration="971000" />
-      <workItem from="1576697077855" duration="6555000" />
+      <workItem from="1576697077855" duration="6586000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7945000" />
+    <option name="totallyTimeSpent" value="7976000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-146" y="23" width="807" height="877" extended-state="0" />
@@ -317,14 +317,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/zeromq/distributed/cache/rtdealer.java</url>
-          <line>26</line>
-          <properties />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="2" />
     </breakpoint-manager>
     <watches-manager />
