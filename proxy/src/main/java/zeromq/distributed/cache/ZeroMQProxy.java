@@ -30,7 +30,7 @@ public class ZeroMQProxy {
                 System.out.println("REQUEST");
                 while (true) {
                     message = frontend.recv(0);
-                    System.out.println(new String(message));
+                    System.out.println(Arrays.toString(message));
                     more = frontend.hasReceiveMore();
                     backend.send(message, more ? ZMQ.SNDMORE : 0);
                     if (!more) {
@@ -43,7 +43,7 @@ public class ZeroMQProxy {
                 System.out.println("RESPONSE");
                 while (true) {
                     message = backend.recv(0);
-                    System.out.println(new String(message));
+                    System.out.println(Arrays.toString(message));
                     more = backend.hasReceiveMore();
                     frontend.send(message, more ? ZMQ.SNDMORE : 0);
                     if (!more) {
