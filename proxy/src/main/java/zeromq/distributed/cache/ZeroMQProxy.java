@@ -45,9 +45,12 @@ public class ZeroMQProxy {
             }
             if (items.pollin(1)) {
                 //while (true) {
+                System.out.println("REP");
                     id = backend.recv(0);
+                    System.out.println(new String(id));
                     backend.recv(0);
                     message = backend.recv(0);
+                    System.out.println(new String(message));
                     if(new String(message).equals("World")){
                         frontend.sendMore(id);
                         frontend.sendMore("");
