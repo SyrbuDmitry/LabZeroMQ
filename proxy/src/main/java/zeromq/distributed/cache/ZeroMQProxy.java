@@ -59,7 +59,7 @@ public class ZeroMQProxy {
                     System.out.printf ("Received response: [%s]\n", new String(message));
                     frontend.sendMore(client);
                     frontend.sendMore("");
-                    frontend.sendMore(message);
+                    frontend.send(message);
                 }
 //                   more = backend.hasReceiveMore();
                     //frontend.send(message, more ? ZMQ.SNDMORE : 0);
