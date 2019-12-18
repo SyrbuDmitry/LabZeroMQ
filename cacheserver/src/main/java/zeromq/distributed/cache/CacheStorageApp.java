@@ -10,6 +10,7 @@ public class CacheStorageApp {
         ZMQ.Socket responder = context.socket(SocketType.DEALER);
         responder.connect("tcp://localhost:5560");
         responder.send("N");
+        System.out.println("SENT");
         while (!Thread.currentThread().isInterrupted()) {
             System.out.println(responder.recvStr());
 //            responder.recvStr();
