@@ -12,7 +12,6 @@ public class CacheStorageApp {
         while (!Thread.currentThread().isInterrupted()) {
             responder.recvStr();
             String string = responder.recvStr();
-            responder.recvStr();
             System.out.printf ("Received request: [%s]\n", string); // Do some 'work'
             try {
                 Thread.sleep (1000);
