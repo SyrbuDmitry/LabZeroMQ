@@ -269,12 +269,12 @@
       <workItem from="1576487068603" duration="58000" />
       <workItem from="1576612445761" duration="357000" />
       <workItem from="1576619142143" duration="971000" />
-      <workItem from="1576697077855" duration="6792000" />
+      <workItem from="1576697077855" duration="6822000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8182000" />
+    <option name="totallyTimeSpent" value="8212000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-146" y="23" width="807" height="877" extended-state="0" />
@@ -317,7 +317,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
