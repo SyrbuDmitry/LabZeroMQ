@@ -4,11 +4,13 @@ public class CacheSegment {
     private int start, end;
     private String id;
     public static int count = 0;
+    public int idcount = 0;
     CacheSegment(String start, String end, String id){
         this.start = Integer.parseInt(start);
         this.end = Integer.parseInt(end);
         this.id = id;
         count++;
+        idcount = count;
     }
 
     public int getEnd() {
@@ -23,7 +25,7 @@ public class CacheSegment {
         return id;
     }
 
-    public static int getCount() {
-        return count;
+    public  int getCount() {
+        return idcount;
     }
 }
