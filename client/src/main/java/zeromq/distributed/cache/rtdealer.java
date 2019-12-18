@@ -12,48 +12,6 @@ import org.zeromq.ZContext;
  */
 public class rtdealer
 {
-    private static Random    rand        = new Random();
-    private static final int NBR_WORKERS = 3;
-
-    private static class Worker extends Thread
-    {
-        @Override
-        public void run()
-        {
-            try (ZContext context = new ZContext()) {
-                Socket worker = context.createSocket(SocketType.DEALER);
-             //   ZHelper.setId(worker); //  Set a printable identity
-
-                worker.connect("tcp://localhost:5671");
-
-                int total = 0;
-
-                while (true) {
-                    //  Tell the broker we're ready for work
-                    worker.sendMore("");
-                    worker.send("Hi Boss");
-
-                    //  Get workload from broker, until finished
-                    worker.recvStr(); //  Envelope delimiter
-                    String workload = worker.recvStr();
-                    System.out.println(workload);
-                    boolean finished = workload.equals("Fired!");
-                    if (finished) {
-                        System.out.printf("Completed: %d tasks\n", total);
-                        break;
-                    }
-                    total++;
-
-                    //  Do some random work
-                    try {
-                        Thread.sleep(rand.nextInt(500) + 1);
-                    }
-                    catch (InterruptedException e) {
-                    }
-                }
-            }
-        }
-    }
 
     /**
      * While this example runs in a single process, that is just to make
@@ -62,41 +20,17 @@ public class rtdealer
      */
     public static void main(String[] args) throws Exception
     {
-        System.out.println("start");
-        try (ZContext context = new ZContext()) {
-            Socket broker = context.createSocket(SocketType.ROUTER);
-            broker.bind("tcp://*:5671");
-
-            for (int workerNbr = 0; workerNbr < NBR_WORKERS; workerNbr++) {
-                Thread worker = new Worker();
-                worker.start();
-            }
-
-            //  Run for five seconds and then tell workers to end
-            long endTime = System.currentTimeMillis() + 1000;
-            int workersFired = 0;
-            while (true) {
-                //  Next message gives us least recently used worker
-                String identity = broker.recvStr();
-                broker.sendMore(identity);
-                byte[] d = broker.recv(0); //  Envelope delimiter
-                byte[] m = broker.recv(0); //  Response from worker
-                System.out.println(new String(d));
-                System.out.println(new String(m));
-                broker.sendMore("");
-
-                //  Encourage workers until it's time to fire them
-                if (System.currentTimeMillis() < endTime) {
-
-                    broker.send("Work harder");
-                }
-                else {
-
-                    broker.send("Fired!");
-                    if (++workersFired == NBR_WORKERS)
-                        break;
-                }
-            }
+        ZMQ.Context context = ZMQ.context(1);
+// Socket to talk to server
+        Socket requester = context.socket(SocketType.REQ);
+        requester.connect("tcp://localhost:5559");
+        System.out.println("launch and connect client.");
+        for (int request_nbr = 0; request_nbr < 10; request_nbr++) {
+            requester.send("Hello", 0);
+            String reply = requester.recvStr (0);
+            System.out.println("Received reply " + request_nbr + " [" + reply + "]");
         }
+// We never get here but clean up anyhow requester.close();
+        context.term();
     }
 }
