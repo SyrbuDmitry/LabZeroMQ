@@ -49,19 +49,16 @@ public class ZeroMQProxy {
 //                }
             }
             if (items.pollin(1)) {
-                System.out.println();
-                System.out.println("REP");
+                
                 //while (true) {
                 id = backend.recv(0);
                 dil = backend.recv(0);
                 message = backend.recv(0);
-                System.out.println(new String(id));
-                System.out.println(new String(dil));
-                System.out.println(new String(message));
+
                 if(new String(message).equals("N"))
                     server = id;
                 else {
-                    System.out.println("SENDING REQUEST TO "+client);
+                    System.out.println("SENDING" + new String(message) +" TO "+new String(client));
                     frontend.sendMore(client);
                     frontend.sendMore("");
                     frontend.sendMore(message);
