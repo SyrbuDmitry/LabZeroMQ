@@ -8,7 +8,7 @@ public class CacheStorageApp {
         ZMQ.Context context = ZMQ.context (1);
 // Socket to talk to server
         ZMQ.Socket dealer = context.socket (SocketType.DEALER);
-        dealer.bind("tcp://*:5560");
+        dealer.connect("tcp://localhost:5560");
         System.out.println("bind to localhost:5560");
         dealer.send("NOTIFY 0 5");
         Storage cache = new Storage();
