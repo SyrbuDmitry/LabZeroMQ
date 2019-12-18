@@ -47,7 +47,7 @@ public class ZeroMQProxy {
                 String [] sarr = message.split(" " );
                 if(sarr[0].equals("NOTIFY")) {
                     serverList.add(new CacheSegment(sarr[1], sarr[2], identity));
-                    System.out.println(serverList.get(serverList.size()-1).getCount());
+                    //System.out.println(serverList.get(serverList.size()-1).getCount());
                 }
                 else {
                     frontend.sendMore(identity);
