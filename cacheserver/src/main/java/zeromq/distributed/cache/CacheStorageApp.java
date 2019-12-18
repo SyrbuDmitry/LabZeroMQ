@@ -8,7 +8,7 @@ public class CacheStorageApp {
         ZMQ.Context context = ZMQ.context(1);
 // Socket to talk to server
         ZMQ.Socket responder = context.socket(SocketType.DEALER);
-        responder.connect("tcp://localhost:5560");
+        responder.connect("tcp://localhost:5566");
         while (!Thread.currentThread().isInterrupted()) {
             System.out.println("Received request"); // Do some 'work'
 
