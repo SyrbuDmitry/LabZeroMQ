@@ -9,10 +9,15 @@ public class CacheStorageApp {
 // Socket to talk to server
         ZMQ.Socket responder = context.socket(SocketType.DEALER);
         responder.connect("tcp://localhost:5560");
-        responder.sendMore("");
-        responder.send("N");
-        System.out.println("SENT");
+//        responder.sendMore("");
+//        responder.send("N");
+        System.out.println("CONNECTED");
         while (!Thread.currentThread().isInterrupted()) {
+            System.out.println(responder.recvStr());
+            System.out.println(responder.recvStr());
+            System.out.println(responder.recvStr());
+            System.out.println(responder.recvStr());
+            System.out.println(responder.recvStr());
             System.out.println(responder.recvStr());
 //            responder.recvStr();
 //            String string = responder.recvStr();
