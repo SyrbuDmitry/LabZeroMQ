@@ -15,8 +15,8 @@
       <file leaf-file-name="ZeroMQProxy.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/zeromq/distributed/cache/ZeroMQProxy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" column="25" lean-forward="false" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
+            <state relative-caret-position="345">
+              <caret line="23" column="29" lean-forward="true" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -70,8 +70,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="530" />
-    <option name="y" value="76" />
+    <option name="x" value="24" />
+    <option name="y" value="33" />
     <option name="width" value="1245" />
     <option name="height" value="877" />
   </component>
@@ -273,15 +273,15 @@
       <option name="presentableId" value="Default" />
       <updated>1576613242827</updated>
       <workItem from="1576613246396" duration="1854000" />
-      <workItem from="1576697175141" duration="1080000" />
+      <workItem from="1576697175141" duration="1088000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2934000" />
+    <option name="totallyTimeSpent" value="2942000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="530" y="76" width="1245" height="877" extended-state="0" />
+    <frame x="24" y="33" width="1245" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -366,8 +366,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/zeromq/distributed/cache/ZeroMQProxy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="25" lean-forward="false" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
+        <state relative-caret-position="345">
+          <caret line="23" column="29" lean-forward="true" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
