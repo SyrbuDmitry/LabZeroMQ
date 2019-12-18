@@ -26,7 +26,7 @@ public class ZeroMQProxy {
 
 // Switch messages between sockets
         while (!Thread.currentThread().isInterrupted()) {
-            items.poll();
+                items.poll();
 // poll and memorize multipart detection items.poll();
             if (items.pollin(0)) {
                 identity = frontend.recvStr();
