@@ -29,7 +29,6 @@ public class ZeroMQProxy {
             items.poll();
 // poll and memorize multipart detection items.poll();
             if (items.pollin(0)) {
-                    System.out.println("REQ");
                 while (true) {
                     message = frontend.recvStr(0);
                     more = frontend.hasReceiveMore();
