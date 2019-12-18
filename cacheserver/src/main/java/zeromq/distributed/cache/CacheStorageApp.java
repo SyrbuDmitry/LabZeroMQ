@@ -11,6 +11,9 @@ public class CacheStorageApp {
         responder.connect("tcp://localhost:5560");
         while (!Thread.currentThread().isInterrupted()) {
 // Wait for next request from client
+            responder.recvStr(0);
+            responder.recvStr(0);
+
             String string = responder.recvStr(0);
             System.out.printf("Received request: [%s]\n", string); // Do some 'work'
             try {
