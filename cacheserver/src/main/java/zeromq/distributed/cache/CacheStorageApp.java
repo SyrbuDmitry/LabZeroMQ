@@ -13,8 +13,6 @@ public class CacheStorageApp {
             System.out.println("Received request"); // Do some 'work'
 
 // Wait for next request from client
-            responder.recvStr(0);
-            responder.recvStr(0);
             String string = responder.recvStr(0);
             System.out.println(string);
             try {
