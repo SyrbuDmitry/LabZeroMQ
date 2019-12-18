@@ -29,6 +29,7 @@ public class ZeroMQProxy {
                 items.poll();
 // poll and memorize multipart detection items.poll();
             if (items.pollin(0)) {
+                System.out.println("REQUEST");
                 identity = frontend.recvStr();
                 frontend.recvStr();
                 message = frontend.recvStr();
@@ -38,6 +39,7 @@ public class ZeroMQProxy {
                 backend.sendMore(message);
             }
             if (items.pollin(1)) {
+                System.out.println("RESPONSE");
                 identity = backend.recvStr(0);
                 backend.recvStr(0);
                 message = backend.recvStr(0);
