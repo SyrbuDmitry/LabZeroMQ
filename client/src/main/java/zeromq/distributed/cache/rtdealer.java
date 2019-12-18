@@ -26,8 +26,8 @@ public class rtdealer
         System.out.println("launch and connect client.");
 
             requester.send("Hello", 0);
-
-            System.out.println("Received reply ");
+            String reply = requester.recvStr (0);
+            System.out.println("Received reply "  + " [" + reply + "]");
 
 // We never get here but clean up anyhow
         requester.close();
