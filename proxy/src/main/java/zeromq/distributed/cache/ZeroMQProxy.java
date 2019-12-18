@@ -36,9 +36,6 @@ public class ZeroMQProxy {
                     dil = frontend.recv(0);
                     message = frontend.recv(0);
                     client = id;
-                    System.out.println(new String(id));
-                    System.out.println(new String(dil));
-                    System.out.println(new String(message));
                     System.out.println();
                     backend.sendMore(server);
                     backend.sendMore(dil);
@@ -59,7 +56,7 @@ public class ZeroMQProxy {
                 if(new String(message).equals("N"))
                     server = id;
                 else {
-                    System.out.println("SENDING " + new String(message) +" TO "+new String(client));
+                    System.out.printf ("Received response: [%s]\n", new String(message));
                     frontend.sendMore(client);
                     frontend.sendMore("");
                     frontend.sendMore(message);
