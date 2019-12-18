@@ -10,8 +10,8 @@ public class CacheStorageApp {
         ZMQ.Socket dealer = context.socket (SocketType.DEALER);
         dealer.connect("tcp://localhost:5560");
         System.out.println("bind to localhost:5560");
-        dealer.sendMore("");
-        dealer.send("NOTIFY 0 5");
+//        dealer.sendMore("");
+//        dealer.send("NOTIFY 0 5");
         Storage cache = new Storage();
         System.out.println("START LISTENING TO POLLS");
         while (!Thread.currentThread ().isInterrupted ()) {
