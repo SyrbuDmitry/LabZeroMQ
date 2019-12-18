@@ -28,7 +28,7 @@ public class rtdealer
             requester.send("PUT 0 A", 0);
             requester.send("PUT 1 B", 0);
             requester.send("GET 0", 0);
-            String message = requester.recvStr();
+            String message = requester.recvStr(0);
             System.out.println(message);
 // We never get here but clean up anyhow requester.close();
         context.term();
