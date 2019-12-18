@@ -49,7 +49,7 @@ public class ZeroMQProxy {
 //                }
             }
             if (items.pollin(1)) {
-                
+
                 //while (true) {
                 id = backend.recv(0);
                 dil = backend.recv(0);
