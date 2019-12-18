@@ -30,7 +30,6 @@ public class ZeroMQProxy {
             items.poll();
             if (items.pollin(0)) {
 //                while (true) {
-
                     id = frontend.recv(0);
                     dil = frontend.recv(0);
                     message = frontend.recv(0);
