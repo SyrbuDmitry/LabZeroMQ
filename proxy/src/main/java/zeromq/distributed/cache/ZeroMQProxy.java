@@ -33,7 +33,7 @@ public class ZeroMQProxy {
                     message = frontend.recv(0);
                     backend.sendMore(id);
                     backend.sendMore("");
-                    backend.sendMore(message);
+                    backend.send(message);
 //                    if (!more) {
 //                        break;
 //                    }
