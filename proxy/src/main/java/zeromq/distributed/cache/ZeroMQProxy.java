@@ -10,44 +10,22 @@ public class ZeroMQProxy {
 
 
     public static void main(String[] args) {
-        List<CacheSegment> serverList = new ArrayList<>();
-        ZMQ.Context context = ZMQ.context(1);
-        ZMQ.Socket frontend = context.socket(SocketType.ROUTER);
-        ZMQ.Socket backend = context.socket(SocketType.DEALER);
-        frontend.bind("tcp://*:5551");
-        backend.bind("tcp://*:5550");
-        System.out.println("launch and connect broker.");
-// Initialize poll set
-        ZMQ.Poller items = context.poller(2);
-        items.register(frontend, ZMQ.Poller.POLLIN);
-        items.register(backend, ZMQ.Poller.POLLIN);
-        boolean more = false;
-        String message, identity;
-
-// Switch messages between sockets
-        while (!Thread.currentThread().isInterrupted()) {
-            items.poll();
-            if (items.pollin(0)) {
-                System.out.println("REQ");
-                while (true) {
-                    message = frontend.recvStr(0);
-                    more = frontend.hasReceiveMore();
-                    backend.send(message, more ? ZMQ.SNDMORE : 0);
-                    if(!more){
-                        break; }
-                }
+        ZMQ.Context context = ZMQ.context (1);
+// Socket to talk to server
+        ZMQ.Socket responder = context.socket (SocketType.REP); responder.connect ("tcp://localhost:5560");
+        while (!Thread.currentThread ().isInterrupted ()) {
+// Wait for next request from client
+            String string = responder.recvStr (0); System.out.printf ("Received request: [%s]\n", string); // Do some 'work'
+            try {
+                Thread.sleep (1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-            if (items.pollin(1)) {
-                System.out.println("RESP");
-                while (true) {
-                    message = backend.recvStr(0);
-                    more = backend.hasReceiveMore();
-                    frontend.send(message, more ? ZMQ.SNDMORE : 0);
-                    if (!more) {
-                        break;
-                    }
-                }
-            }
+// Send reply back to client
+            responder.send ("World");
         }
+// We never get here but clean up anyhow
+        responder.close();
+        context.term();
     }
 }
