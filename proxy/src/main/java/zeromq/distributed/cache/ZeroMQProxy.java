@@ -40,6 +40,7 @@ public class ZeroMQProxy {
                 backend.recvStr();
                 message = backend.recvStr();
                 String [] sarr = message.split(" " );
+                System.out.println(message);
                 if(sarr[0].equals("NOTIFY")) {
                     serverList.add(new CacheSegment(sarr[1], sarr[2], identity));
                     System.out.println(serverList.size());
