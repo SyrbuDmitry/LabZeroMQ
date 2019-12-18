@@ -47,13 +47,13 @@ public class ZeroMQProxy {
             }
             if (items.pollin(1)) {
                 //while (true) {
-                id = frontend.recv(0);
-                dil = frontend.recv(0);
-                message = frontend.recv(0);
+                id = backend.recv(0);
+                dil = backend.recv(0);
+                message = backend.recv(0);
                 if(new String(message).equals("N"))
                     server = id;
                 else {
-
+                    
                 }
 
 
