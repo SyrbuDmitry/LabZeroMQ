@@ -15,8 +15,8 @@
       <file leaf-file-name="CacheStorageApp.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/zeromq/distributed/cache/CacheStorageApp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="17" column="16" lean-forward="false" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="36" />
+            <state relative-caret-position="135">
+              <caret line="10" column="59" lean-forward="true" selection-start-line="10" selection-start-column="59" selection-end-line="10" selection-end-column="59" />
               <folding />
             </state>
           </provider>
@@ -53,8 +53,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="152" />
-    <option name="y" value="24" />
+    <option name="x" value="288" />
+    <option name="y" value="50" />
     <option name="width" value="1264" />
     <option name="height" value="877" />
   </component>
@@ -257,15 +257,15 @@
       <updated>1576484808409</updated>
       <workItem from="1576484811555" duration="355000" />
       <workItem from="1576612444868" duration="1718000" />
-      <workItem from="1576698283228" duration="98000" />
+      <workItem from="1576698283228" duration="118000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2171000" />
+    <option name="totallyTimeSpent" value="2191000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="152" y="24" width="1264" height="877" extended-state="0" />
+    <frame x="288" y="50" width="1264" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -342,8 +342,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/zeromq/distributed/cache/CacheStorageApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="17" column="16" lean-forward="false" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="36" />
+        <state relative-caret-position="135">
+          <caret line="10" column="59" lean-forward="true" selection-start-line="10" selection-start-column="59" selection-end-line="10" selection-end-column="59" />
           <folding />
         </state>
       </provider>
