@@ -16,6 +16,7 @@ public class CacheStorageApp {
             responder.recvStr(0);
             responder.recvStr(0);
             String string = responder.recvStr(0);
+            System.out.println(string);
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
