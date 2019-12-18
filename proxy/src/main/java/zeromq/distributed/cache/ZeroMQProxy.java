@@ -4,6 +4,7 @@ import org.zeromq.SocketType;
 import org.zeromq.ZMQ;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ZeroMQProxy {
@@ -33,7 +34,7 @@ public class ZeroMQProxy {
                     message = frontend.recv(0);
                     backend.sendMore(id);
                     backend.sendMore("");
-                    System.out.println(message);
+                    System.out.println(Arrays.toString(message));
                     backend.send(message);
 
 //                    if (!more) {
