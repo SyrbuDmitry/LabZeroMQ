@@ -19,16 +19,18 @@ public class CacheStorageApp {
         String value;
         while (!Thread.currentThread().isInterrupted()) {
 // Wait for next request from client
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
 
             responder.recvStr();
             client = responder.recv();
             responder.recvStr();
             message = responder.recvStr().split(" ");
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
             if(message[0].equals("PUT")){
                 cache.putValue(message[1],message[2]);
