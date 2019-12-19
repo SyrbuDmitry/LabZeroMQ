@@ -24,8 +24,8 @@ public class CacheStorageApp {
             responder.recvStr(ZMQ.NOBLOCK);
             client = responder.recv(ZMQ.NOBLOCK);
             responder.recvStr(ZMQ.NOBLOCK);
-            message = responder.recvStr().split(" ");
-
+            message = responder.recvStr(ZMQ.NOBLOCK).split(" ");
+            System.out.println("ZXC");
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
