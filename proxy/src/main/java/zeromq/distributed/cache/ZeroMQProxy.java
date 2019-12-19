@@ -40,6 +40,7 @@ public class ZeroMQProxy {
                     if (!more) {
                         break;
                     }
+                }
                     backend.sendMore(serverList.get(0).getId());
                     backend.sendMore("");
                     backend.sendMore(frames.get(0));
@@ -59,6 +60,7 @@ public class ZeroMQProxy {
                         if (!more) {
                             break;
                         }
+                    }
                         if (frames.size() == 3) {
                             String[] msgPars = frames.get(2).split(" ");
                             serverList.add(new CacheSegment(msgPars[1], msgPars[2], frames.get(0)));
@@ -82,5 +84,3 @@ public class ZeroMQProxy {
                 }
             }
         }
-    }
-}
