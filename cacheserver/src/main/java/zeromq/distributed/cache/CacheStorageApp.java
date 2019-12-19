@@ -21,11 +21,11 @@ public class CacheStorageApp {
 // Wait for next request from client
 
             System.out.println("QWER");
-            responder.recvStr(ZMQ.NOBLOCK);
-            client = responder.recv(ZMQ.NOBLOCK);
-            responder.recvStr(ZMQ.NOBLOCK);
-            message = responder.recvStr(ZMQ.NOBLOCK).split(" ");
-            System.out.println("ZXC");
+            responder.recvStr();
+            client = responder.recv();
+            responder.recvStr();
+            message = responder.recvStr().split(" ");
+
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
