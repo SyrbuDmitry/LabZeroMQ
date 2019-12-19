@@ -23,36 +23,36 @@ public class CacheStorageApp {
         while (!Thread.currentThread().isInterrupted()) {
 // Wait for next request from client
             System.out.println("PROCESSING");
-            items.poll();
-            if (items.pollin(0)) {
-                System.out.println("POLL");
-                responder.recvStr();
-                client = responder.recv();
-                responder.recvStr();
-                message = responder.recvStr().split(" ");
-
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                if (message[0].equals("PUT")) {
-                    cache.putValue(message[1], message[2]);
-                    responder.sendMore("");
-                    responder.sendMore(client);
-                    responder.sendMore("");
-                    responder.send("SUCCESSFUL PUT");
-                }
-
-                if (message[0].equals("GET")) {
-                    value = cache.getValue(message[1]);
-                    responder.sendMore("");
-                    responder.sendMore(client);
-                    responder.sendMore("");
-                    responder.send(value);
-                }
-            }
+//            items.poll();
+//            if (items.pollin(0)) {
+//                System.out.println("POLL");
+//                responder.recvStr();
+//                client = responder.recv();
+//                responder.recvStr();
+//                message = responder.recvStr().split(" ");
+//
+//                try {
+//                    Thread.sleep(1000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//
+//                if (message[0].equals("PUT")) {
+//                    cache.putValue(message[1], message[2]);
+//                    responder.sendMore("");
+//                    responder.sendMore(client);
+//                    responder.sendMore("");
+//                    responder.send("SUCCESSFUL PUT");
+//                }
+//
+//                if (message[0].equals("GET")) {
+//                    value = cache.getValue(message[1]);
+//                    responder.sendMore("");
+//                    responder.sendMore(client);
+//                    responder.sendMore("");
+//                    responder.send(value);
+//                }
+//            }
         }
         responder.close();
         context.term();
