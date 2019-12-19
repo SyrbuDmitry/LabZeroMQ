@@ -18,6 +18,7 @@ public class CacheStorageApp {
         String[] message;
         String value;
         while (!Thread.currentThread().isInterrupted()) {
+            System.out.println("PROCESSING");
 // Wait for next request from client
             try {
                 Thread.sleep(1000);
@@ -28,6 +29,7 @@ public class CacheStorageApp {
             client = responder.recv();
             responder.recvStr();
             message = responder.recvStr().split(" ");
+
             if(message[0].equals("PUT")){
                 cache.putValue(message[1],message[2]);
                 responder.sendMore("");
@@ -35,6 +37,7 @@ public class CacheStorageApp {
                 responder.sendMore("");
                 responder.send("SUCCESSFUL PUT");
             }
+
             if(message[0].equals("GET")){
                 value = cache.getValue(message[1]);
                 responder.sendMore("");
@@ -43,7 +46,7 @@ public class CacheStorageApp {
                 responder.send(value);
             }
         }
-// We never get here but clean up anyhow
+
         responder.close();
         context.term();
     }

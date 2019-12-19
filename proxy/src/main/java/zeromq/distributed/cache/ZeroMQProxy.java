@@ -21,8 +21,8 @@ public class ZeroMQProxy {
         ZMQ.Poller items = context.poller(2);
         items.register(frontend, ZMQ.Poller.POLLIN);
         items.register(backend, ZMQ.Poller.POLLIN);
-        boolean more = false;
-        byte[] message, client = null, server = null;
+        boolean more;
+        byte[] message;
         List<byte[]> frames = new ArrayList<>();
         List<CacheSegment> serverList = new ArrayList<>();
 // Switch messages between sockets
@@ -30,11 +30,9 @@ public class ZeroMQProxy {
 // poll and memorize multipart detection
             items.poll();
             if (items.pollin(0)) {
-                System.out.println("REQUEST");
                 frames.clear();
                 while (true) {
                     message = frontend.recv();
-                    System.out.println(new String(message));
                     frames.add(message);
                     more = frontend.hasReceiveMore();
                     if (!more) {
