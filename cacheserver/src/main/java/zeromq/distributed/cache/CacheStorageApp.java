@@ -24,6 +24,7 @@ public class CacheStorageApp {
             System.out.println("REQ FROM CLIENT");
             System.out.println("M: "+responder.recvStr());
             client = responder.recvStr();
+            System.out.println("CLIENT "+ client);
             responder.recv(0);
             message = responder.recvStr();
             System.out.println("Received request "  +
