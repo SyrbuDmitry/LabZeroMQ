@@ -7,8 +7,8 @@ public class CacheSegment {
     public int idcount = 0;
     CacheSegment(byte[] msg, byte[] id){
         String[] message = new String(msg).split(" ");
-        this.start = Integer.parseInt(message[0]);
-        this.end = Integer.parseInt(message[1]);
+        this.start = Integer.parseInt(message[1]);
+        this.end = Integer.parseInt(message[2]);
         this.id = id;
         count++;
         idcount = count;
