@@ -24,8 +24,8 @@ public class CacheStorageApp {
 // Wait for next request from client
             System.out.println("PROCESSING");
             items.poll();
-
             if (items.pollin(0)) {
+                System.out.println("POLL");
                 responder.recvStr();
                 client = responder.recv();
                 responder.recvStr();
