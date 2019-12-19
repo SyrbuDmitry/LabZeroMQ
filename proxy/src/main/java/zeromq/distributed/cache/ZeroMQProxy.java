@@ -22,33 +22,53 @@ public class ZeroMQProxy {
         items.register(frontend, ZMQ.Poller.POLLIN);
         items.register(backend, ZMQ.Poller.POLLIN);
         boolean more = false;
-        byte[] message,client=null,server=null;
+        String message, client = null, server = null;
+        List<String> frames = new ArrayList<>();
+        List<CacheSegment> serverList = new ArrayList<>();
 // Switch messages between sockets
         while (!Thread.currentThread().isInterrupted()) {
 // poll and memorize multipart detection
             items.poll();
             if (items.pollin(0)) {
                 System.out.println("REQUEST");
-
-                    client = frontend.recv(0);
-
-                    frontend.recv(0);
-                    message = frontend.recv(0);
-                    System.out.println(new String(client));
-                    
-                    backend.sendMore(server);
+                frames.clear();
+                while (true) {
+                    message = frontend.recvStr();
+                    frames.add(message);
+                    more = frontend.hasReceiveMore();
+                    backend.send(message, more ? ZMQ.SNDMORE : 0);
+                    if (!more) {
+                        break;
+                    }
+                    backend.sendMore(serverList.get(0).getId());
                     backend.sendMore("");
-                    backend.sendMore(client);
+                    backend.sendMore(frames.get(0));
                     backend.sendMore("");
-                    backend.send(message);
-
-                System.out.println();
-            }
-            if (items.pollin(1)) {
-
-                    server = backend.recv(0);
-                    backend.recv(0);
-                    message = backend.recv(0);
+                    backend.send(frames.get(2));
+                    System.out.println();
+                }
+                if (items.pollin(1)) {
+                    frames.clear();
+                    while (true) {
+                        message = frontend.recvStr();
+                        frames.add(message);
+                        System.out.println(message);
+                        more = frontend.hasReceiveMore();
+                        backend.send(message, more ? ZMQ.SNDMORE : 0);
+                        if (!more) {
+                            break;
+                        }
+                        if (frames.size() == 3) {
+                            String[] msgPars = frames.get(2).split(" ");
+                            serverList.add(new CacheSegment(msgPars[1], msgPars[2], frames.get(0)));
+                        } else {
+                            frontend.sendMore(frames.get(2));
+                            frontend.sendMore("");
+                            frontend.send(frames.get(4));
+                        }
+//                    server = backend.recv(0);
+//                    backend.recv(0);
+//                    message = backend.recv(0);
 //                    if (new String(server).equals("N"))
 //                    System.out.println(Arrays.toString(message));
 //                    more = backend.hasReceiveMore();
@@ -56,7 +76,9 @@ public class ZeroMQProxy {
 //                    if (!more) {
 //                        break;
 //                    }
-                System.out.println();
+                        System.out.println();
+                    }
+                }
             }
         }
     }

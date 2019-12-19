@@ -10,19 +10,25 @@ public class CacheStorageApp {
         ZMQ.Socket responder = context.socket (SocketType.DEALER);
         responder.connect ("tcp://localhost:5560");
         responder.sendMore("");
-        responder.send("N");
+        responder.send("N 0 3");
+        String client, message;
         while (!Thread.currentThread ().isInterrupted ()) {
 // Wait for next request from client
-
             try {
                 Thread.sleep (1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             responder.recv(0);
-            responder.sendMore(responder.recv(0));
+            client = responder.recvStr();
+            responder.recv(0);
+            message = responder.recvStr();
+            System.out.println("Received request "  +
+                    " [" + message + "]"+" from "+
+            "[ "+ client+" ]");
+            responder.sendMore(client);
             responder.sendMore("");
-            responder.send("World");
+            responder.send("PUT VALUE  IN CACHE");
         }
 // We never get here but clean up anyhow
         responder.close();
