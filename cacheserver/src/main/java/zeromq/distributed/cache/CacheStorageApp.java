@@ -23,7 +23,7 @@ public class CacheStorageApp {
         while (!Thread.currentThread().isInterrupted()) {
 // Wait for next request from client
 
-           
+
             if (items.pollin(0)) {
                 System.out.println("POLL");
                 responder.recvStr();
@@ -52,8 +52,6 @@ public class CacheStorageApp {
                     responder.sendMore("");
                     responder.send(value);
                 }
-            }else{
-                System.out.println("PROCESSING");
             }
         }
         responder.close();
