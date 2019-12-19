@@ -29,7 +29,6 @@ public class ZeroMQProxy {
         while (!Thread.currentThread().isInterrupted()) {
 // poll and memorize multipart detection
             items.poll();
-            System.out.println("POLL");
             if (items.pollin(0)) {
                 System.out.println("REQUEST");
                 frames.clear();

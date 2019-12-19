@@ -11,7 +11,7 @@ public class CacheStorageApp {
         responder.connect ("tcp://localhost:5560");
 
         responder.sendMore("");
-        responder.send("N 0 3",0);
+        responder.send("N 0 3");
 
         String client, message;
         while (!Thread.currentThread ().isInterrupted ()) {
