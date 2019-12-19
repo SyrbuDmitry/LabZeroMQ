@@ -5,9 +5,10 @@ public class CacheSegment {
     private byte[] id;
     public static int count = 0;
     public int idcount = 0;
-    CacheSegment(String start, String end, byte[] id){
-        this.start = Integer.parseInt(start);
-        this.end = Integer.parseInt(end);
+    CacheSegment(byte[] msg, byte[] id){
+        String[] message = new String(msg).split(" ");
+        this.start = Integer.parseInt(message[0]);
+        this.end = Integer.parseInt(message[1]);
         this.id = id;
         count++;
         idcount = count;

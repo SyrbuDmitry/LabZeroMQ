@@ -11,11 +11,12 @@ public class CacheStorageApp {
 // Socket to talk to server
         ZMQ.Socket responder = context.socket(SocketType.DEALER);
         responder.connect("tcp://localhost:5560");
-
+        Storage cache = new Storage();
         responder.sendMore("");
-        responder.send("N 0 3");
-        byte[] client, message;
-        System.out.println("NOTIFY SENT");
+        responder.send("NOTIFY 0 3");
+        byte[] client;
+        String[] message;
+        String value;
         while (!Thread.currentThread().isInterrupted()) {
 // Wait for next request from client
             try {
@@ -23,19 +24,24 @@ public class CacheStorageApp {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
             responder.recvStr();
             client = responder.recv();
             responder.recvStr();
-            message = responder.recv();
-            System.out.println("REQUEST FROM " + Arrays.toString(client) +" MESSAGE ["+
-            new String(message)+"]");
-
-            responder.sendMore("");
-            responder.sendMore(client);
-            responder.sendMore("");
-            responder.send("SUCCESSFUL PUT");
-
+            message = responder.recvStr().split(" ");
+            if(message[0].equals("PUT")){
+                cache.putValue(message[1],message[2]);
+                responder.sendMore("");
+                responder.sendMore(client);
+                responder.sendMore("");
+                responder.send("SUCCESSFUL PUT");
+            }
+            if(message[0].equals("GET")){
+                value = cache.getValue(message[1]);
+                responder.sendMore("");
+                responder.sendMore(client);
+                responder.sendMore("");
+                responder.send(value);
+            }
         }
 // We never get here but clean up anyhow
         responder.close();

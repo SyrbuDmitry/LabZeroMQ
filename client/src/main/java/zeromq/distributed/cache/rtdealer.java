@@ -27,6 +27,10 @@ public class rtdealer {
             String reply = requester.recvStr(0);
             System.out.println("Received reply "  +
                     " [" + reply + "]");
+        requester.send("GET 0", 0);
+        reply = requester.recvStr(0);
+        System.out.println("Received reply "  +
+                " [" + reply + "]");
 // We never get here but clean up anyhow
         requester.close();
         context.term();

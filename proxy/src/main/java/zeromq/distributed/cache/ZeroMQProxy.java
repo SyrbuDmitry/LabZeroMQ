@@ -37,64 +37,34 @@ public class ZeroMQProxy {
                     System.out.println(new String(message));
                     frames.add(message);
                     more = frontend.hasReceiveMore();
-                    //backend.send(message, more ? ZMQ.SNDMORE : 0);
                     if (!more) {
                         break;
                     }
                 }
-
-                    System.out.println("SENDING  TO ");
-                System.out.println("-------------");
-                    System.out.println("SERVER "+ Arrays.toString(serverList.get(0).getId())); //server
-                    backend.sendMore(serverList.get(0).getId());
-
-                    System.out.println("");
-                    backend.sendMore("");
-
-                    System.out.println("CLIENT "+ Arrays.toString(frames.get(0)));     //client
-                    backend.sendMore(frames.get(0));
-
-                    System.out.println("");
-                    backend.sendMore("");
-
-                    System.out.println("MESSAGE "+new String(frames.get(2)));
-                    backend.send(frames.get(2),0);
-                    System.out.println("-------------");
-                    System.out.println("SENT");
+                backend.sendMore(serverList.get(0).getId());
+                backend.sendMore("");
+                backend.sendMore(frames.get(0));
+                backend.sendMore("");
+                backend.send(frames.get(2), 0);
+            }
+            if (items.pollin(1)) {
+                frames.clear();
+                while (true) {
+                    message = backend.recv();
+                    frames.add(message);
+                    more = backend.hasReceiveMore();
+                    if (!more) {
+                        break;
+                    }
                 }
-                if (items.pollin(1)) {
-                    System.out.println("REP");
-                    frames.clear();
-                    while (true) {
-                        message = backend.recv();
-                        frames.add(message);
-                        System.out.println(new String(message));
-                        more = backend.hasReceiveMore();
-                        //backend.send(message, more ? ZMQ.SNDMORE : 0);
-                        if (!more) {
-                            break;
-                        }
-                    }
-                        if (frames.size() == 3) {
-                            //String[] msgPars = frames.get(2).split(" ");
-                            serverList.add(new CacheSegment("0", "5", frames.get(0)));
-                        } else {
-                            frontend.sendMore(frames.get(2));
-                            frontend.sendMore("");
-                            frontend.send(frames.get(4));
-                        }
-//                    server = backend.recv(0);
-//                    backend.recv(0);
-//                    message = backend.recv(0);
-//                    if (new String(server).equals("N"))
-//                    System.out.println(Arrays.toString(message));
-//                    more = backend.hasReceiveMore();
-//                    frontend.send(message, more ? ZMQ.SNDMORE : 0);
-//                    if (!more) {
-//                        break;
-//                    }
-                        System.out.println();
-                    }
+                if (frames.size() == 3) {
+                    serverList.add(new CacheSegment(frames.get(2), frames.get(0)));
+                } else {
+                    frontend.sendMore(frames.get(2));
+                    frontend.sendMore("");
+                    frontend.send(frames.get(4));
                 }
             }
         }
+    }
+}
