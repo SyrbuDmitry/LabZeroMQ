@@ -42,6 +42,7 @@ public class ZeroMQProxy {
                         break;
                     }
                 }
+                    System.out.println("-------------");
                     System.out.println("SENDING  TO ");
 
                     System.out.println("SERVER "+serverList.get(0).getId()); //server
