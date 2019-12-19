@@ -21,9 +21,9 @@ public class CacheStorageApp {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            responder.recvStr();
-            message = responder.recvStr();
-            System.out.println(message);
+            
+            System.out.println(responder.recvStr());
+            System.out.println(responder.recvStr());
         }
 // We never get here but clean up anyhow
         responder.close();
