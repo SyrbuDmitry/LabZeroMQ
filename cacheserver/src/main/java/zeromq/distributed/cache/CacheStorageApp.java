@@ -20,11 +20,7 @@ public class CacheStorageApp {
         while (!Thread.currentThread().isInterrupted()) {
 
 // Wait for next request from client
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            
 
             responder.recvStr();
             client = responder.recv();
