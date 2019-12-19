@@ -44,19 +44,19 @@ public class ZeroMQProxy {
                 }
                     System.out.println("SENDING  TO ");
 
-                    System.out.println(serverList.get(0).getId());
+                    System.out.println("SERVER "+serverList.get(0).getId()); //server
                     backend.sendMore(serverList.get(0).getId());
 
                     System.out.println("");
                     backend.sendMore("");
 
-                    System.out.println(frames.get(0));
+                    System.out.println("CLIENT "+frames.get(0));     //client
                     backend.sendMore(frames.get(0));
 
                     System.out.println("");
                     backend.sendMore("");
 
-                    System.out.println(frames.get(2));
+                    System.out.println("MESSAGE "+frames.get(2));
                     backend.send(frames.get(2));
 
                     System.out.println();
