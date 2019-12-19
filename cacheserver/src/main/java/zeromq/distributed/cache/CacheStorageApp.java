@@ -3,6 +3,8 @@ package zeromq.distributed.cache;
 import org.zeromq.SocketType;
 import org.zeromq.ZMQ;
 
+import java.util.Arrays;
+
 public class CacheStorageApp {
     public static void main(String[] args) {
         ZMQ.Context context = ZMQ.context(1);
@@ -12,7 +14,7 @@ public class CacheStorageApp {
 
         responder.sendMore("");
         responder.send("N 0 3");
-        String client, message;
+        byte[] client, message;
         System.out.println("NOTIFY SENT");
         while (!Thread.currentThread().isInterrupted()) {
 // Wait for next request from client
@@ -22,8 +24,13 @@ public class CacheStorageApp {
                 e.printStackTrace();
             }
 
-            System.out.println(responder.recvStr());
-            System.out.println(responder.recvStr());
+            responder.recvStr();
+            client = responder.recv();
+            responder.recvStr();
+            message = responder.recv();
+
+            System.out.println("REQUEST FROM [" + Arrays.toString(client) +"] MESSAGE ["+
+            new String(message)+"]");
         }
 // We never get here but clean up anyhow
         responder.close();
