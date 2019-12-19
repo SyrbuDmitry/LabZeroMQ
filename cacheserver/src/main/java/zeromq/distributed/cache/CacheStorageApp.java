@@ -28,9 +28,14 @@ public class CacheStorageApp {
             client = responder.recv();
             responder.recvStr();
             message = responder.recv();
-
-            System.out.println("REQUEST FROM [" + Arrays.toString(client) +"] MESSAGE ["+
+            System.out.println("REQUEST FROM " + Arrays.toString(client) +" MESSAGE ["+
             new String(message)+"]");
+
+            responder.sendMore("");
+            responder.sendMore(client);
+            responder.sendMore("");
+            responder.send("SUCCESSFUL PUT");
+
         }
 // We never get here but clean up anyhow
         responder.close();
