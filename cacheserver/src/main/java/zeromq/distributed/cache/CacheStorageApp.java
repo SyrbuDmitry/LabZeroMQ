@@ -23,7 +23,7 @@ public class CacheStorageApp {
         while (!Thread.currentThread().isInterrupted()) {
 // Wait for next request from client
 
-            System.out.println(items.poll());
+           
             if (items.pollin(0)) {
                 System.out.println("POLL");
                 responder.recvStr();
