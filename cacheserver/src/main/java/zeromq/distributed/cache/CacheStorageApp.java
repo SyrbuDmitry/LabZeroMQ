@@ -18,15 +18,13 @@ public class CacheStorageApp {
         String[] message;
         String value;
         while (!Thread.currentThread().isInterrupted()) {
-
 // Wait for next request from client
             try {
-                System.out.println(123);
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println("PROCESSING");
+            
             responder.recvStr();
             client = responder.recv();
             responder.recvStr();
