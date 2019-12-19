@@ -23,6 +23,7 @@ public class CacheStorageApp {
         while (!Thread.currentThread().isInterrupted()) {
 // Wait for next request from client
             items.poll(2000);
+            System.out.println("TIMEOUT");
             if (items.pollin(0)) {
                 System.out.println("POLL");
                 responder.recvStr();
