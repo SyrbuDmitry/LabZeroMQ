@@ -58,7 +58,7 @@ public class ZeroMQProxy {
 //                    backend.sendMore("");
 
                     System.out.println("MESSAGE "+frames.get(2));
-                    backend.send(frames.get(2));
+                    backend.send(frames.get(2),0);
                     System.out.println("-------------");
                     System.out.println("SENT");
                 }
