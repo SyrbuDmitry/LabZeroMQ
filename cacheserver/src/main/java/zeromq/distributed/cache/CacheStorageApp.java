@@ -9,8 +9,10 @@ public class CacheStorageApp {
 // Socket to talk to server
         ZMQ.Socket responder = context.socket (SocketType.DEALER);
         responder.connect ("tcp://localhost:5560");
+
         responder.sendMore("");
         responder.send("N 0 3");
+
         String client, message;
         while (!Thread.currentThread ().isInterrupted ()) {
 // Wait for next request from client

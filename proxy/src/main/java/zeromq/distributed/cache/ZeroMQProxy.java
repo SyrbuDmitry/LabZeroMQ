@@ -49,6 +49,7 @@ public class ZeroMQProxy {
                 }
                 if (items.pollin(1)) {
                     frames.clear();
+                    System.out.println("REP");
                     while (true) {
                         message = frontend.recvStr();
                         frames.add(message);
