@@ -21,6 +21,7 @@ public class CacheStorageApp {
 
 // Wait for next request from client
             try {
+                System.out.println(123);
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
