@@ -22,7 +22,7 @@ public class CacheStorageApp {
                 e.printStackTrace();
             }
             System.out.println("REQ FROM CLIENT");
-            responder.recv(0);
+            System.out.println(responder.recv(0));
             client = responder.recvStr();
             responder.recv(0);
             message = responder.recvStr();
