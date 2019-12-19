@@ -21,7 +21,7 @@ public class CacheStorageApp {
 
 // Wait for next request from client
             
-
+            System.out.println("PROCESSING");
             responder.recvStr();
             client = responder.recv();
             responder.recvStr();
