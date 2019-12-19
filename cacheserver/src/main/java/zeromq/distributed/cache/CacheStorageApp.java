@@ -21,9 +21,9 @@ public class CacheStorageApp {
 // Wait for next request from client
 
             System.out.println("QWER");
-            responder.recvStr();
-            client = responder.recv();
-            responder.recvStr();
+            responder.recvStr(ZMQ.NOBLOCK);
+            client = responder.recv(ZMQ.NOBLOCK);
+            responder.recvStr(ZMQ.NOBLOCK);
             message = responder.recvStr().split(" ");
 
             try {
