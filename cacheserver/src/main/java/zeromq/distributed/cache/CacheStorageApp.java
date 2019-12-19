@@ -21,6 +21,7 @@ public class CacheStorageApp {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            System.out.println("REQ FROM CLIENT");
             responder.recv(0);
             client = responder.recvStr();
             responder.recv(0);
