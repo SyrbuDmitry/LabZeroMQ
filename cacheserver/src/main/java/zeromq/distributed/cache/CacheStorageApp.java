@@ -12,8 +12,9 @@ public class CacheStorageApp {
 
         responder.sendMore("");
         responder.send("N 0 3");
-        System.out.println("NOTIFY SENT");
+
         String client, message;
+        System.out.println("NOTIFY SENT");
         while (!Thread.currentThread ().isInterrupted ()) {
 // Wait for next request from client
             try {
@@ -22,17 +23,9 @@ public class CacheStorageApp {
                 e.printStackTrace();
             }
 
-            System.out.println("DIL: "+responder.recvStr());
-            client = responder.recvStr();
-            System.out.println("CLIENT "+ client);
-            responder.recv(0);
+            responder.recvStr();
             message = responder.recvStr();
-            System.out.println("Received request "  +
-                    " [" + message + "]"+" from "+
-            "[ "+ client+" ]");
-            responder.sendMore(client);
-            responder.sendMore("");
-            responder.send("PUT VALUE  IN CACHE");
+            System.out.println(message);
         }
 // We never get here but clean up anyhow
         responder.close();
