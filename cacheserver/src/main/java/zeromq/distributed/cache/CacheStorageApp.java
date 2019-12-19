@@ -10,7 +10,7 @@ public class CacheStorageApp {
         ZMQ.Socket responder = context.socket (SocketType.DEALER);
         responder.connect ("tcp://localhost:5560");
 
-        responder.sendMore("");
+        //responder.sendMore("");
         responder.send("N 0 3");
         System.out.println("NOTIFY SENT");
         String client, message;
