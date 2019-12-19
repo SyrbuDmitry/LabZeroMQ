@@ -51,11 +51,11 @@ public class ZeroMQProxy {
                     System.out.println("");
                     backend.sendMore("");
 
-                    System.out.println("CLIENT "+frames.get(0));     //client
-                    backend.sendMore(frames.get(0));
-
-                    System.out.println("");
-                    backend.sendMore("");
+//                    System.out.println("CLIENT "+frames.get(0));     //client
+//                    backend.sendMore(frames.get(0));
+//
+//                    System.out.println("");
+//                    backend.sendMore("");
 
                     System.out.println("MESSAGE "+frames.get(2));
                     backend.send(frames.get(2));
