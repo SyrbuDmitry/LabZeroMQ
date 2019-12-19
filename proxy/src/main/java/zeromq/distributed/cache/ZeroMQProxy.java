@@ -42,11 +42,23 @@ public class ZeroMQProxy {
                         break;
                     }
                 }
+                    System.out.println("SENDING  TO ");
+
+                    System.out.println(serverList.get(0).getId());
                     backend.sendMore(serverList.get(0).getId());
+
+                    System.out.println("");
                     backend.sendMore("");
+
+                    System.out.println(frames.get(0));
                     backend.sendMore(frames.get(0));
+
+                    System.out.println("");
                     backend.sendMore("");
+
+                    System.out.println(frames.get(2));
                     backend.send(frames.get(2));
+
                     System.out.println();
                 }
                 if (items.pollin(1)) {
