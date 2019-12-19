@@ -22,10 +22,7 @@ public class CacheStorageApp {
         String value;
         while (!Thread.currentThread().isInterrupted()) {
 // Wait for next request from client
-
-            items.poll
-            if (items.pollin(0)) {
-                System.out.println("POLL");
+                
                 responder.recvStr();
                 client = responder.recv();
                 responder.recvStr();
@@ -52,9 +49,7 @@ public class CacheStorageApp {
                     responder.sendMore("");
                     responder.send(value);
                 }
-            }else{
-                System.out.println("PROCESSING");
-            }
+
         }
         responder.close();
         context.term();
