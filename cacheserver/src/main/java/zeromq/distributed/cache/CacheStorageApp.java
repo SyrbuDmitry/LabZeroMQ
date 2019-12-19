@@ -12,10 +12,9 @@ public class CacheStorageApp {
 
         responder.sendMore("");
         responder.send("N 0 3");
-
         String client, message;
         System.out.println("NOTIFY SENT");
-        while (!Thread.currentThread ().isInterrupted ()) {
+        while (!Thread.currentThread().isInterrupted()) {
 // Wait for next request from client
             try {
                 Thread.sleep (1000);
