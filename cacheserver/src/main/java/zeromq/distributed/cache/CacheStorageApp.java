@@ -19,8 +19,7 @@ public class CacheStorageApp {
         String value;
         while (!Thread.currentThread().isInterrupted()) {
 // Wait for next request from client
-
-            System.out.println("QWER");
+            
             responder.recvStr();
             client = responder.recv();
             responder.recvStr();
